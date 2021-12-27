@@ -20,7 +20,7 @@ void input()
     for (int i = 0; i < N; i++)
     {
         cin >> s;
-        W.push_back(make_pair(s.substr(0, 2) + s.substr(s.length() - 2), i + 1));
+        W.push_back(make_pair(s, i + 1));
     }
 
 }
@@ -40,7 +40,7 @@ void init()
 int bfs()
 {
     queue< pair<string, int> > que;
-    que.push(make_pair("しり", 0));
+    que.push(make_pair("si", 0));
     d[0] = 0;
 
     while(que.size())
@@ -48,7 +48,7 @@ int bfs()
         pair<string, int> P = que.front();
         que.pop();
 
-        if (P.first[1] == 'ん')
+        if (P.first[1] == 'n')
         {
             return d[P.second];
         }
@@ -71,5 +71,8 @@ int main()
 {
     input();
     init();
+    for (int i = 0; i < N; i++)
+        cout << W[i].first << " " << W[i].second << endl;
+    
     cout << bfs() << endl;
 }
